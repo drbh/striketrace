@@ -3,7 +3,7 @@
 		<div class="text-gray-100 text-xl">
 			<div class="p-2.5 mt-1 flex items-center">
 				<h1 style="font-family: 'Benne',serif;" class="text-gray-300 text-[24px] ml-3">
-					optionplotr
+					Strike Trace
 				</h1>
 				<i class="bi bi-x cursor-pointer ml-28 lg:hidden" />
 			</div>
