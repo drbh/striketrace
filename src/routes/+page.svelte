@@ -45,7 +45,7 @@
 	/>
 
 	<div
-		class="content bg-gray-800 fixed top-0 bottom-0 lg:left-[360px] p-2 overflow-y-auto text-center bg-white-900"
+		class="content bg-gray-800 fixed top-0 bottom-0 left-[360px] p-2 overflow-y-auto text-center bg-white-900"
 		style={`width: calc(100% - 360px);  cursor: none; overflow: hidden;`}
 	>
 		<DrawingWindow {legs} {xMin} {xMax} {yMin} {yMax} {panEndPosRel} {allLineData} {xDots} />
