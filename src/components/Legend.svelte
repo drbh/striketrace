@@ -8,7 +8,7 @@
 	export let xDots: any;
 </script>
 
-<div>
+<!-- <div>
 	<div
 		style="top: 80px; right: 30px;"
 		class={`absolute flex w-[200px] h-[36px] font-bold bg-gray-900 text-gray-500 text-sm px-3 py-2 text-left rounded-md`}
@@ -24,11 +24,11 @@
 		</svg>
 		({$panEndPosRel.x.toFixed(2)}, {$panEndPosRel.y.toFixed(2)})
 	</div>
-</div>
+</div> -->
 
 <div
-	style="top: {130 + 10 * 50}px; right: {30}px;"
-	class={`absolute flex w-[200px] h-[40px] font-bold bg-blue-700 text-white text-sm px-3 py-2 text-left rounded-md`}
+	style="top: {90}px; left: {30}px;"
+	class={`absolute flex w-[200px] h-[40px] font-bold bg-[#2d333b] text-sm px-3 py-2 text-left rounded-md shadow-md`}
 >
 	<input
 		type="text"
@@ -44,8 +44,8 @@
 
 {#each $xDots as dot, dotIndex}
 	<div
-		style="top: {130 + dotIndex * 50}px; right: {30}px;"
-		class={`absolute flex w-[200px] h-[36px] font-bold bg-gray-900 text-gray-500 text-sm px-3 py-2 text-left rounded-md shadow-md`}
+		style="top: {90 + dotIndex * 50}px; right: {30}px;"
+		class={`absolute flex w-[200px] h-[36px] font-bold bg-[#2d333b] text-gray-500 text-sm px-3 py-2 text-left rounded-md shadow-md`}
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"

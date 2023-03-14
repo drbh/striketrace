@@ -23,6 +23,8 @@
 		yMax,
 		yMin
 	} from '../stores/legs';
+
+	const sidebarWidth = 360;
 </script>
 
 <body class="bg-gray-800">
@@ -42,13 +44,24 @@
 		{handleOnChangeShowOnChart}
 		{handleOnChageSpotlight}
 		{handleOnRemoveLegAtIndex}
+		{sidebarWidth}
 	/>
 
 	<div
-		class="content bg-gray-800 fixed top-0 bottom-0 left-[360px] p-2 overflow-y-auto text-center bg-white-900"
-		style={`width: calc(100% - 360px);  cursor: none; overflow: hidden;`}
+		class="content bg-[#22272e] fixed top-0 bottom-0 p-2 overflow-y-auto text-center bg-white-900"
+		style={`width: calc(100% - ${sidebarWidth}px);  cursor: none; overflow: hidden; left: ${sidebarWidth}px;`}
 	>
-		<DrawingWindow {legs} {xMin} {xMax} {yMin} {yMax} {panEndPosRel} {allLineData} {xDots} />
+		<DrawingWindow
+			{legs}
+			{xMin}
+			{xMax}
+			{yMin}
+			{yMax}
+			{panEndPosRel}
+			{allLineData}
+			{xDots}
+			{sidebarWidth}
+		/>
 
 		<Legend {xMin} {xMax} {yMin} {yMax} {panEndPosRel} {allLineData} {xDots} />
 

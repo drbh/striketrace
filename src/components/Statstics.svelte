@@ -11,7 +11,7 @@
 		style="transform: translate(calc(100vw - 360px - 300px), -20vh);"
 		class={`absolute w-[260px] ${
 			$showStats ? 'h-[190px]' : 'h-[50px]'
-		} bg-gray-900 text-gray-700 text-sm p-2 rounded-md`}
+		} bg-[#2d333b] text-gray-700 text-sm p-2 rounded-md`}
 	>
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div
@@ -51,9 +51,11 @@
 			>
 				<span class="text-sm text-gray-600 font-bold">Sum Long</span>
 				<span class="text-sm text-gray-200 font-bold ml-4">
-					${$legs
-						.map((leg) => (leg.buySell === 'BUY' ? leg.price * leg.quantity : 0))
-						.reduce((a, b) => a + b, 0) * 100}</span
+					${(
+						$legs
+							.map((leg) => (leg.buySell === 'BUY' ? leg.price * leg.quantity : 0))
+							.reduce((a, b) => a + b, 0) * 100
+					).toFixed(4)}</span
 				>
 			</div>
 
@@ -63,13 +65,15 @@
 			>
 				<span class="text-sm text-gray-600 font-bold">Out of pocket</span>
 				<span class="text-sm text-gray-200 font-bold ml-4"
-					>${($legs
-						.map((leg) => (leg.buySell === 'SELL' ? leg.price * leg.quantity : 0))
-						.reduce((a, b) => a + b, 0) -
-						$legs
-							.map((leg) => (leg.buySell === 'BUY' ? leg.price * leg.quantity : 0))
-							.reduce((a, b) => a + b, 0)) *
-						100}</span
+					>${(
+						($legs
+							.map((leg) => (leg.buySell === 'SELL' ? leg.price * leg.quantity : 0))
+							.reduce((a, b) => a + b, 0) -
+							$legs
+								.map((leg) => (leg.buySell === 'BUY' ? leg.price * leg.quantity : 0))
+								.reduce((a, b) => a + b, 0)) *
+						100
+					).toFixed(4)}</span
 				>
 			</div>
 		{/if}

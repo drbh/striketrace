@@ -26,10 +26,12 @@
 	export let handleOnChangeShowOnChart = () => {};
 	export let handleOnChageSpotlight = () => {};
 	export let handleOnRemoveLegAtIndex = () => {};
+	export let sidebarWidth = 200;
 </script>
 
 <div
-	class="sidebar fixed top-16 bottom-0 lg:left-0 p-2 w-[360px] overflow-y-auto text-center bg-gray-900"
+	class="sidebar fixed top-16 bottom-0 lg:left-0 p-2 overflow-y-auto text-center bg-[#22272e] border-r border-gray-700"
+	style={`width: ${sidebarWidth}px;`}
 >
 	<div
 		class="mt-6 p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white"

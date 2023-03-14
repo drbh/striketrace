@@ -59,7 +59,7 @@ export const getLineForLeg = ({
 	for (let i = start; i < end; i++) {
 		const x = i;
 		const y = strike;
-		const value = getValueAtPrice(strike, x, kind, buySell) + (buySell === 'SELL' ? -price : price);
+		const value = getValueAtPrice(strike, x, kind, buySell) + (buySell === 'SELL' ? +price : -price);
 		const valueScaled = value * quantity;
 		line.push({ x, y: valueScaled, value, valueScaled });
 	}

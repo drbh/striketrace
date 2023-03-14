@@ -17,6 +17,8 @@
 	export let xDots: any;
 	export let legs: any;
 
+	export let sidebarWidth: number;
+
 	let timeout: NodeJS.Timeout | null = null;
 
 	let svgElement: any;
@@ -33,7 +35,7 @@
 	}
 
 	function calculateXYRel(e: MouseEvent, innerElement: HTMLElement) {
-		let xRel = (e.clientX - 365) / innerElement.getBoundingClientRect().width;
+		let xRel = (e.clientX - sidebarWidth) / innerElement.getBoundingClientRect().width;
 		let yRel = e.clientY / innerElement.getBoundingClientRect().height;
 
 		let xRange = $xMax - $xMin;
@@ -85,7 +87,7 @@
 				let leg = line.leg;
 				const value =
 					getValueAtPrice(leg.strike, xRel, leg.kind, leg.buySell) +
-					(leg.buySell === 'SELL' ? -leg.price : leg.price);
+					(leg.buySell === 'SELL' ? +leg.price : -leg.price);
 				const valueScaled = value * leg.quantity;
 
 				newXDots.push({ x: xRel, y: valueScaled, lineColor: leg.lineColor });
@@ -180,7 +182,7 @@
 		{/each}
 
 		<Line
-			stroke="#4d618a"
+			stroke="#2d333b"
 			_data={[
 				{ x: $xMin, y: $panEndPosRel.y },
 				{ x: $xMax, y: $panEndPosRel.y }
@@ -188,7 +190,7 @@
 		/>
 
 		<Line
-			stroke="#4d618a"
+			stroke="#2d333b"
 			_data={[
 				{ x: $panEndPosRel.x, y: $yMin },
 				{ x: $panEndPosRel.x, y: $yMax }
@@ -202,9 +204,9 @@
 		<Circle
 			x={$panEndPosRel.x}
 			y={$panEndPosRel.y}
-			r={4}
-			stroke={'#4d618a'}
-			fill={'#4d618a'}
+			r={1}
+			stroke={'#e91e63'}
+			fill={'#e91e63'}
 			strokeWidth={1}
 		/>
 	</Svg>

@@ -9,10 +9,10 @@ export let data = writable([]);
 export let legs = writable([
 	{
 		kind: 'PUT',
-		strike: 130,
+		strike: 40,
 		buySell: 'BUY',
-		quantity: 1,
-		price: 1,
+		quantity: 5,
+		price: 10.88,
 		//
 		showOnChart: true,
 		spotlight: false,
@@ -20,10 +20,10 @@ export let legs = writable([
 	},
 	{
 		kind: 'PUT',
-		strike: 150,
+		strike: 35,
 		buySell: 'SELL',
-		quantity: 2,
-		price: 1,
+		quantity: 10,
+		price: 6.16,
 		//
 		showOnChart: true,
 		spotlight: false,
@@ -31,10 +31,10 @@ export let legs = writable([
 	},
 	{
 		kind: 'PUT',
-		strike: 170,
+		strike: 30,
 		buySell: 'BUY',
-		quantity: 1,
-		price: 0.5,
+		quantity: 5,
+		price: 2.84,
 		//
 		showOnChart: true,
 		spotlight: false,
@@ -44,9 +44,9 @@ export let legs = writable([
 
 export let panEndPos = { x: 0, y: 0 };
 export let panEndPosRel = writable({ x: 0, y: 0 });
-export let xMin = writable(100);
-export let xMax = writable(200);
-export let yMin = writable(-20);
+export let xMin = writable(20);
+export let xMax = writable(50);
+export let yMin = writable(-50);
 export let yMax = writable(60);
 export let svgPanZoomInstance;
 export let showStats = writable(true);
