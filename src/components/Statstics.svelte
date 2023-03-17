@@ -4,11 +4,13 @@
 
 	export let showStats: any;
 	export let legs: any;
+
+	export let sidebarWidth = 300;
 </script>
 
 <div use:draggable>
 	<div
-		style="transform: translate(calc(100vw - 360px - 300px), -20vh);"
+		style={`transform: translate(calc(100vw - ${sidebarWidth}px - 300px), -20vh);`}
 		class={`absolute w-[260px] ${
 			$showStats ? 'h-[190px]' : 'h-[50px]'
 		} bg-[#2d333b] text-gray-700 text-sm p-2 rounded-md`}
@@ -29,7 +31,7 @@
 				class="flex rounded-md px-2 text-white pb-1"
 				style="display: flex; justify-content: space-between;"
 			>
-				<span class="text-sm text-gray-600 font-bold">Total Equity Cost</span>
+				<span class="text-sm font-bold">Total Equity Cost</span>
 				<span class="text-sm text-gray-200 font-bold ml-4"> $0 </span>
 			</div>
 
@@ -37,7 +39,7 @@
 				class="flex rounded-md px-2 text-white pb-1"
 				style="display: flex; justify-content: space-between;"
 			>
-				<span class="text-sm text-gray-600 font-bold">Sum Short</span>
+				<span class="text-sm font-bold">Sum Short</span>
 				<span class="text-sm text-gray-200 font-bold ml-4">
 					${$legs
 						.map((leg) => (leg.buySell === 'SELL' ? leg.price * leg.quantity : 0))
@@ -49,7 +51,7 @@
 				class="flex rounded-md px-2 text-white pb-1"
 				style="display: flex; justify-content: space-between;"
 			>
-				<span class="text-sm text-gray-600 font-bold">Sum Long</span>
+				<span class="text-sm font-bold">Sum Long</span>
 				<span class="text-sm text-gray-200 font-bold ml-4">
 					${(
 						$legs
@@ -63,7 +65,7 @@
 				class="flex rounded-md px-2 text-white pb-1"
 				style="display: flex; justify-content: space-between;"
 			>
-				<span class="text-sm text-gray-600 font-bold">Out of pocket</span>
+				<span class="text-sm font-bold">Out of pocket</span>
 				<span class="text-sm text-gray-200 font-bold ml-4"
 					>${(
 						($legs

@@ -24,7 +24,7 @@
 		yMin
 	} from '../stores/legs';
 
-	const sidebarWidth = 360;
+	const sidebarWidth = 300;
 </script>
 
 <body class="bg-gray-800">

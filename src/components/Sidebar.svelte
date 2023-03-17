@@ -5,6 +5,7 @@
 	// import { onMount } from 'svelte';
 
 	import Leg from './Leg.svelte';
+	import { Icon, WrenchScrewdriver } from 'svelte-hero-icons';
 
 	export let legs = [];
 	export let xMin = 0;
@@ -27,6 +28,7 @@
 	export let handleOnChageSpotlight = () => {};
 	export let handleOnRemoveLegAtIndex = () => {};
 	export let sidebarWidth = 200;
+	let isEditMode = false;
 </script>
 
 <div
@@ -107,13 +109,29 @@
 				aria-selected="true"
 				on:click={() => handleOnAddLeg(obj)}
 			>
-				Add
+				Add‰
 			</button>
 		{/if}
 	</div>
 	<div class="p-2.5 mt-3 flex items-center rounded-md px-2 duration-300 text-gray-500">
 		<i class="bi bi-house-door-fill" />
-		<span class="text-[15px] ml-4 font-bold">Legs</span>
+
+		<div class="flex items-center direction-row space-between justify-between w-full">
+			<div class="text-[15px] mr-4 font-bold">Legs</div>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div
+				class="cursor-pointer"
+				on:click={() => {
+					isEditMode = !isEditMode;
+				}}
+			>
+				<Icon
+					src={WrenchScrewdriver}
+					class="w-4 h-4"
+					style={`color: ${isEditMode ? '#AAA' : '#444'}`}
+				/>
+			</div>
+		</div>
 	</div>
 
 	{#if legs.length === 0}
@@ -138,6 +156,7 @@
 			price={leg.price}
 			quantity={leg.quantity}
 			lineColor={leg.lineColor}
+			{isEditMode}
 		/>
 	{/each}
 </div>
