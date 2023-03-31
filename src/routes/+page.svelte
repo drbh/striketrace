@@ -12,6 +12,7 @@
 		handleOnAddLeg,
 		handleOnChageSpotlight,
 		// actions that change state
+		handleOnChangeShowZeroIntersection,
 		handleOnChangeShowOnChart,
 		handleOnRemoveLegAtIndex,
 		legs,
@@ -32,6 +33,7 @@
 
 	<Sidebar
 		{legs}
+		{allLineData}
 		{xMin}
 		{xMax}
 		{yMin}
@@ -41,6 +43,7 @@
 		{obj}
 		{handleEntryKey}
 		{handleOnAddLeg}
+		{handleOnChangeShowZeroIntersection}
 		{handleOnChangeShowOnChart}
 		{handleOnChageSpotlight}
 		{handleOnRemoveLegAtIndex}

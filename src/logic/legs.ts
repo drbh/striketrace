@@ -8,7 +8,6 @@ import type {
 	SumLeg
 } from '../common/types';
 
-
 export const valueOfCallAtPrice = (strike: number, current: number): number => {
 	return Math.max(0, current - strike);
 };
@@ -17,7 +16,7 @@ export const valueOfSoldCallAtPrice = (strike: number, current: number): number 
 };
 
 export const valueOfSoldPutAtPrice = (strike: number, current: number): number => {
-	return Math.min(0, current - strike );
+	return Math.min(0, current - strike);
 };
 
 export const valueOfPutAtPrice = (strike: number, current: number): number => {
@@ -46,6 +45,23 @@ export const getValueAtPrice = (
 	return 1; // should never get here
 };
 
+export const findAllIntersectionsWithZero = (line: Point[]): Point[] => {
+	const intersections = [];
+
+	for (let i = 1; i < line.length; i++) {
+		const prevPoint = line[i - 1];
+		const currentPoint = line[i];
+
+		if (prevPoint.y * currentPoint.y <= 0) {
+			const slope = (currentPoint.y - prevPoint.y) / (currentPoint.x - prevPoint.x);
+			const xIntersection = prevPoint.x - prevPoint.y / slope;
+			intersections.push({ x: xIntersection, y: 0 });
+		}
+	}
+
+	return intersections;
+};
+
 export const getLineForLeg = ({
 	kind,
 	strike,
@@ -59,7 +75,8 @@ export const getLineForLeg = ({
 	for (let i = start; i < end; i++) {
 		const x = i;
 		const y = strike;
-		const value = getValueAtPrice(strike, x, kind, buySell) + (buySell === 'SELL' ? +price : -price);
+		const value =
+			getValueAtPrice(strike, x, kind, buySell) + (buySell === 'SELL' ? +price : -price);
 		const valueScaled = value * quantity;
 		line.push({ x, y: valueScaled, value, valueScaled });
 	}
@@ -99,7 +116,8 @@ export function calculateLines(
 				start: xMin,
 				end: xMax
 			});
-			return { leg, line };
+			const intersections = findAllIntersectionsWithZero(line);
+			return { leg, line, intersections };
 		});
 
 	if (lines.length > 0) {
@@ -121,10 +139,12 @@ export function calculateLines(
 			quantity: 0,
 			price: 0,
 			showOnChart: true,
+			showZeroIntersection: false,
 			spotlight: true,
 			lineColor: '#FFFFFF22'
 		} as SumLeg,
-		line: sumLine
+		line: sumLine,
+		intersections: findAllIntersectionsWithZero(sumLine)
 	});
 
 	return lines;

@@ -15,13 +15,18 @@
 		PaintBrush,
 		WrenchScrewdriver,
 		ArrowTrendingUp,
-		ArrowTrendingDown
+		ArrowTrendingDown,
+		Bars2,
+		Bars3
 	} from 'svelte-hero-icons';
 
 	let show = false;
+	export let showZeroIntersection = false;
 	export let showOnChart = true;
 	export let spotlight = false;
 
+	export let intersections = [];
+	export let lineData = [];
 	export let isEditMode = false;
 	export let legIndex = 0;
 	export let kind = 'call';
@@ -30,6 +35,7 @@
 	export let price = 1.4;
 	export let quantity = 1;
 	export let lineColor = 'red';
+	export let onChangeShowZeroIntersection = (showZeroIntersection: boolean) => {};
 	export let onChangeShowOnChart = (showOnChart: boolean) => {};
 	export let onChangeSpotlight = (spotlight: boolean) => {};
 	export let onRemoveLegAtIndex = (legIndex: any) => {};
@@ -80,6 +86,12 @@
 						on:click={() => onChangeShowOnChart(!showOnChart)}
 					>
 						<Icon src={showOnChart ? Eye : EyeSlash} />
+					</div>
+					<div
+						class={`h-4 pl-2 ${showZeroIntersection ? 'text-white' : 'text-gray-500'}`}
+						on:click={() => onChangeShowZeroIntersection(!showZeroIntersection)}
+					>
+						<Icon src={showZeroIntersection ? Bars3 : Bars2} />
 					</div>
 
 					<div
@@ -139,6 +151,19 @@
 					<td class="text-left text-sm text-gray-600 font-bold">Gamma</td>
 					<td class="text-right text-sm text-gray-200 font-bold ml-4">0.2</td>
 				</tr>
+				<!-- y=0 intercept info -->
+				{#if intersections.length > 0}
+					{#each intersections as intersection, i}
+						<tr>
+							<td class="text-left text-sm text-gray-600">
+								Line {i + 1} Intersection
+							</td>
+							<td class="text-right text-sm text-gray-200 ml-4">
+								{intersection.x.toFixed(2)}
+							</td>
+						</tr>
+					{/each}
+				{/if}
 			</table>
 		</div>
 	{/if}

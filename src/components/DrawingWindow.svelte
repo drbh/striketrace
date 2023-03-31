@@ -182,6 +182,31 @@
 		{/each}
 
 		<Line
+			stroke="#888"
+			strokeWidth={2}
+			_data={[
+				{ x: $xMin, y: 0 },
+				{ x: $xMax, y: 0 }
+			]}
+		/>
+
+		<!-- y=0 intercept lines -->
+		{#each $allLineData as item}
+			{#each item.intersections as intersection}
+				{#if item.leg.showZeroIntersection}
+					<Line
+						stroke={item.leg.lineColor}
+						strokeWidth={2}
+						_data={[
+							{ x: intersection.x, y: $yMin },
+							{ x: intersection.x, y: $yMax }
+						]}
+					/>
+				{/if}
+			{/each}
+		{/each}
+
+		<Line
 			stroke="#2d333b"
 			_data={[
 				{ x: $xMin, y: $panEndPosRel.y },

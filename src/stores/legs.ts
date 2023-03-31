@@ -84,6 +84,20 @@ export const handleOnChangeShowOnChart = (showOnChart, leg) => {
 	});
 };
 
+export const handleOnChangeShowZeroIntersection = (showZeroIntersection, leg) => {
+	legs.update((legs) => {
+		return legs.map((l) => {
+			if (l === leg) {
+				return {
+					...l,
+					showZeroIntersection
+				};
+			}
+			return l;
+		});
+	});
+};
+
 export const handleOnChageSpotlight = (spotlight, leg) => {
 	legs.update((legs) => {
 		return legs.map((l) => {

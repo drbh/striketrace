@@ -8,6 +8,7 @@
 	import { Icon, WrenchScrewdriver } from 'svelte-hero-icons';
 
 	export let legs = [];
+	export let allLineData = any;
 	export let xMin = 0;
 	export let xMax = 0;
 	export let yMin = 0;
@@ -24,6 +25,7 @@
 
 	export let handleEntryKey = () => {};
 	export let handleOnAddLeg = () => {};
+	export let handleOnChangeShowZeroIntersection = () => {};
 	export let handleOnChangeShowOnChart = () => {};
 	export let handleOnChageSpotlight = () => {};
 	export let handleOnRemoveLegAtIndex = () => {};
@@ -145,9 +147,12 @@
 	{#each $legs as leg, legIndex}
 		<Leg
 			{legIndex}
+			onChangeShowZeroIntersection={(showZeroIntersection) =>
+				handleOnChangeShowZeroIntersection(showZeroIntersection, leg)}
 			onChangeShowOnChart={(showOnChart) => handleOnChangeShowOnChart(showOnChart, leg)}
 			onChangeSpotlight={(spotlight) => handleOnChageSpotlight(spotlight, leg)}
 			onRemoveLegAtIndex={() => handleOnRemoveLegAtIndex(legIndex)}
+			showZeroIntersection={leg.showZeroIntersection}
 			showOnChart={leg.showOnChart}
 			spotlight={leg.spotlight}
 			kind={leg.kind}
@@ -156,6 +161,7 @@
 			price={leg.price}
 			quantity={leg.quantity}
 			lineColor={leg.lineColor}
+			intersections={$allLineData[legIndex].intersections || []}
 			{isEditMode}
 		/>
 	{/each}

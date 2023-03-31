@@ -55,6 +55,7 @@ export interface Intersection extends Point {
 export interface SumLeg extends Leg {
 	kind: 'SUM';
 	showOnChart: boolean;
+	showZeroIntersection: boolean;
 	spotlight: boolean;
 	lineColor: string;
 }
